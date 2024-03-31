@@ -8,7 +8,7 @@ class Encoder(nn.Module):
         self.rnn = nn.GRU(input_size=embedding_dim, hidden_size=hidden_dim, batch_first=True)
         self.dropout = nn.Dropout(dropout)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        embedded = self.dropout(self.embedding(x))
+    def forward(self, input: torch.Tensor) -> torch.Tensor:
+        embedded = self.dropout(self.embedding(input))
         _ , hidden = self.rnn(embedded)
         return hidden

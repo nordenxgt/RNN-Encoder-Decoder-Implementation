@@ -6,7 +6,7 @@ class Decoder(nn.Module):
         super().__init__()
         self.embedding = nn.Embedding(num_embeddings=output_dim, embedding_dim=embedding_dim)
         self.rnn = nn.GRU(input_size=embedding_dim+hidden_dim, hidden_size=hidden_dim, batch_first=True)
-        self.fc = nn.Linear(embedding_dim+hidden_dim * 2, output_dim)
+        self.fc = nn.Linear(embedding_dim + hidden_dim*2, output_dim)
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, input: torch.Tensor, hidden: torch.Tensor, context: torch.Tensor) -> torch.Tensor:
