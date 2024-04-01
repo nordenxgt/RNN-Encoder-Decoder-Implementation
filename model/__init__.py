@@ -1,2 +1,2 @@
-from .Encoder import Encoder
-from .Decoder import Decoder
+from .encoder import Encoder
+from .decoder import Decoder

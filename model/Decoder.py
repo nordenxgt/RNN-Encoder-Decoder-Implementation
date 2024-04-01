@@ -14,6 +14,9 @@ class Decoder(nn.Module):
         embedded = self.dropout(self.embedding(input))
         emb_con = torch.cat((embedded, context), dim=2)
         output, hidden = self.rnn(emb_con, hidden)
-        output = torch.cat((embedded.squeeze(0), hidden.squeeze(0), context.squeeze(0)), dim=1)
-        prediction = self.fc(output)
-        return prediction, hidden
+        output = torch.cat((
+            embedded.squeeze(0), 
+            hidden.squeeze(0), 
+            context.squeeze(0)
+        ), dim=1)
+        return self.fc(output)
