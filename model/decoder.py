@@ -4,8 +4,11 @@ from torch import nn
 class Decoder(nn.Module):
     def __init__(self, output_dim: int, embedding_dim: int, hidden_dim: int, dropout: int = 0.1):
         super().__init__()
+        self.output_dim = output_dim
+        self.hidden_dim = hidden_dim
+        
         self.embedding = nn.Embedding(num_embeddings=output_dim, embedding_dim=embedding_dim)
-        self.rnn = nn.GRU(input_size=embedding_dim+hidden_dim, hidden_size=hidden_dim, batch_first=True)
+        self.rnn = nn.GRU(input_size=embedding_dim+hidden_dim, hidden_size=hidden_dim)
         self.fc = nn.Linear(embedding_dim + hidden_dim*2, output_dim)
         self.dropout = nn.Dropout(dropout)
 
